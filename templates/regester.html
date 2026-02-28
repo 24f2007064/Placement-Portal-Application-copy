@@ -10,66 +10,77 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-<div class="login-container">
-    <div class="login-card">
+    <div class="login-container">
+        <div class="login-card">
 
-        <h2 class="login-title">Create Account</h2>
+            <h2 class="login-title">Create Account</h2>
 
-        {% if error %}
+
+
+
+            {% if error %}
             <p class="error-message">{{ error }}</p>
-        {% endif %}
+            {% endif %}
 
-        <form action="/regester" method="POST">
 
-            <div class="input-group">
-                <label>Name</label>
-                <input type="text" name="name" required>
-            </div>
 
-            <div class="input-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
 
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" name="password" required minlength="6">
-            </div>
 
-            <div class="input-group">
-    <label>Role</label>
-    <div class="select-wrapper">
-        <select name="role" required>
-            <option value="">Select Role</option>
-            <option value="student">🎓 Student</option>
-            <option value="company">🏢 Company</option>
-        </select>
+
+            <form action="/regester" method="POST">
+
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required minlength="6">
+                </div>
+
+                <div class="input-group">
+                    <label>Role</label>
+                    <div class="select-wrapper">
+                        <select name="role" required>
+                            <option value="">Select Role</option>
+                            <option value="student">🎓 Student</option>
+                            <option value="company">🏢 Company</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Register</button>
+
+            </form>
+
+            <p class="register-link">
+                Already have an account?
+                <a href="{{ url_for('login') }}">Login</a>
+            </p>
+
+        </div>
     </div>
-</div>
-
-            <button type="submit" class="btn-primary">Register</button>
-
-        </form>
-
-        <p class="register-link">
-            Already have an account?
-            <a href="{{ url_for('login') }}">Login</a>
-        </p>
-
-    </div>
-</div>
 
 </body>
+
 </html>
 
 
-    
+
 </body>
 
 </html>
