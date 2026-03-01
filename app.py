@@ -348,7 +348,7 @@ def admin_dashboard():
     ).limit(5).all()
 
     return render_template(
-        "admin_dashboard.html",
+        "admin/admin_dashboard.html",
         total_students=total_students,
         total_companies=total_companies,
         total_jobs=total_jobs,
@@ -391,7 +391,7 @@ def company_dashboard():
     ).count()
 
     return render_template(
-        "company_dashboard.html",
+        "company/company_dashboard.html",
         company=company,
         active_jobs=active_jobs,
         closed_jobs=closed_jobs,
@@ -431,7 +431,7 @@ def create_job():
 
         return redirect(url_for("company_dashboard"))
 
-    return render_template("create_job.html")
+    return render_template("company/create_job.html")
 
 
 
@@ -531,7 +531,7 @@ def admin_view_job(job_id):
         return redirect(url_for("login"))
 
     job = Job.query.get_or_404(job_id)
-    return render_template("admin_job_detail.html", job=job)
+    return render_template("admin/admin_job_detail.html", job=job)
 
 
 
@@ -555,7 +555,7 @@ def admin_all_companies():
     companies = User.query.filter_by(role="company").all()
 
     return render_template(
-        "admin_all_companies.html",
+        "admin/admin_all_companies.html",
         companies=companies
     )
 
@@ -568,7 +568,7 @@ def admin_all_jobs():
     jobs = Job.query.order_by(Job.id.desc()).all()
 
     return render_template(
-        "admin_all_jobs.html",
+        "admin/admin_all_jobs.html",
         jobs=jobs
     )
 
