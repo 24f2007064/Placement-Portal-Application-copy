@@ -538,6 +538,57 @@ def admin_view_job(job_id):
 
 
 
+
+
+
+
+
+
+
+
+#All TIles from ADMIN DASHBARD
+@app.route("/admin/companies")
+def admin_all_companies():
+    if "role" not in session or session["role"] != "admin":
+        return redirect(url_for("login"))
+
+    companies = User.query.filter_by(role="company").all()
+
+    return render_template(
+        "admin_all_companies.html",
+        companies=companies
+    )
+
+#JOBES TILES
+@app.route("/admin/jobs")
+def admin_all_jobs():
+    if "role" not in session or session["role"] != "admin":
+        return redirect(url_for("login"))
+
+    jobs = Job.query.order_by(Job.id.desc()).all()
+
+    return render_template(
+        "admin_all_jobs.html",
+        jobs=jobs
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/logout")
 def logout():
     session.clear()

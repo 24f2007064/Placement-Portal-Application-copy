@@ -281,3 +281,17 @@ table td:last-child {
     color: #0A1128;
     transform: translateY(-4px);
 }
+
+
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-link:hover .card {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.55);
+    cursor: pointer;
+}
