@@ -329,7 +329,8 @@ def admin_dashboard():
         is_approved=True
     ).count()
 
-    total_jobs = Job.query.count()
+    active_jobs_count = Job.query.filter_by(is_active=True).count()
+    total_jobs_count = Job.query.count()
     total_applications = Application.query.count()
 
     # Pending company approvals
@@ -351,7 +352,8 @@ def admin_dashboard():
         "admin/admin_dashboard.html",
         total_students=total_students,
         total_companies=total_companies,
-        total_jobs=total_jobs,
+        total_jobs=active_jobs_count,
+        total_jobs_history=total_jobs_count,
         total_applications=total_applications,
         pending_companies=pending_companies,
         pending_jobs=pending_jobs,   # 🔥 pass this
