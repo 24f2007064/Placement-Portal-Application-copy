@@ -295,3 +295,7 @@ table td:last-child {
     box-shadow: 0 25px 55px rgba(0,0,0,0.55);
     cursor: pointer;
 }
+
+.card {
+    min-height: 190px;
+}
