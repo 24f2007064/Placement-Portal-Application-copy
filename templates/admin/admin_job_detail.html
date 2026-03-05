@@ -29,13 +29,23 @@
                 {{ job.description }}
             </p>
 
-            <div class="action-buttons" style="margin-top: 30px;">
-                <a href="/approve_job/{{ job.id }}" class="btn approve">Approve</a>
-                <a href="/reject_job/{{ job.id }}" class="btn reject">Reject</a>
-            </div>
-        </div>
+            {% if not job.is_approved %}
 
-    </div>
+            <a href="/approve_job/{{ job.id }}" class="btn approve">
+                Approve
+            </a>
+
+            <a href="/reject_job/{{ job.id }}" class="btn reject">
+                Reject
+            </a>
+
+            {% else %}
+
+            <span class="badge badge-approved">Already Approved</span>
+
+            {% endif %}
+
+        </div>
 
 </body>
 

@@ -299,3 +299,54 @@ table td:last-child {
 .card {
     min-height: 190px;
 }
+
+
+
+
+
+
+
+
+
+.job-link{
+color:#8FA8FF;
+text-decoration:none;
+font-weight:500;
+}
+
+.job-link:hover{
+color:#ACFF11;
+text-decoration:underline;
+}
+
+
+/* =========================
+   RESUME BUTTON
+========================= */
+
+.resume-btn{
+    background: rgba(143,168,255,0.15);
+    color:#8FA8FF;
+    border:1px solid rgba(143,168,255,0.35);
+    padding:10px 18px;
+    border-radius:16px;
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+    transition: all 0.3s ease;
+}
+
+/* Hover animation */
+
+.resume-btn:hover{
+    background: linear-gradient(135deg,#8FA8FF,#ACFF11);
+    color:#0A1128;
+
+    transform: translateY(-4px) scale(1.04);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.25),
+        0 8px 30px rgba(143,168,255,0.35);
+
+}

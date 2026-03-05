@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Applicants</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="top-bar">
+
+            <h1 class="title">{{ job.title }}</h1>
+
+            <div class="top-actions">
+                <a href="{{ url_for('company_dashboard') }}" class="btn back-btn">
+                    ← Back
+                </a>
+            </div>
+
+        </div>
+
+        <h1 class="title">Applicants for {{ job.title }}</h1>
+
+        {% if applications %}
+
+        <table>
+
+            <tr>
+                <th>Student</th>
+                <th>Department</th>
+                <th>CGPA</th>
+                <th>Resume</th>
+                <th>Status</th>
+            </tr>
+
+            {% for app in applications %}
+
+            <tr>
+
+                <td>{{ app.student.user.name }}</td>
+
+                <td>{{ app.student.department }}</td>
+
+                <td>{{ app.student.cgpa }}</td>
+
+                <td>
+                    <a href="{{ app.student.resume }}" target="_blank" class="btn resume-btn">
+                        View Resume
+                    </a>
+                </td>
+
+                <td>{{ app.status }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% else %}
+
+        <p>No applicants yet.</p>
+
+        {% endif %}
+
+
+
+    </div>
+
+</body>
+
+</html>

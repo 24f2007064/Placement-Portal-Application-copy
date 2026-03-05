@@ -297,9 +297,95 @@ def login():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#STUDENT PROFILE
+
+
+
+
+
+
+
 @app.route("/student_dashboard")
 def student_dashboard():
-    return "This is Student Dashboard"
+
+    if "role" not in session or session["role"] != "student":
+        return redirect(url_for("login"))
+
+    user = User.query.get(session["user_id"])
+
+    student = user.student_profile
+
+    # profile completion check
+    profile_complete = True
+
+    if not student.department or not student.cgpa or not student.resume:
+        profile_complete = False
+
+    # approved & active jobs
+    jobs = Job.query.filter_by(
+        is_approved=True,
+        is_active=True
+    ).all()
+
+    # student's applications
+    applications = Application.query.filter_by(
+        student_id=student.id
+    ).all()
+
+    return render_template(
+        "student/student_dashboard.html",
+        student=student,
+        jobs=jobs,
+        applications=applications,
+        profile_complete=profile_complete
+    )
+
+
+
+
+
+
+@app.route("/apply_job/<int:job_id>")
+def apply_job(job_id):
+
+    if "role" not in session or session["role"] != "student":
+        return redirect(url_for("login"))
+
+    user = User.query.get(session["user_id"])
+    student = user.student_profile
+
+    existing = Application.query.filter_by(
+        job_id=job_id,
+        student_id=student.id
+    ).first()
+
+    if existing:
+        return redirect(url_for("student_dashboard"))
+
+    application = Application(
+        job_id=job_id,
+        student_id=student.id
+    )
+
+    db.session.add(application)
+    db.session.commit()
+
+    return redirect(url_for("student_dashboard"))
 
 
 
@@ -308,6 +394,28 @@ def student_dashboard():
 
 
 
+@app.route("/student_profile", methods=["GET", "POST"])
+def student_profile():
+
+    if "role" not in session or session["role"] != "student":
+        return redirect(url_for("login"))
+
+    user = User.query.get(session["user_id"])
+    student = user.student_profile
+
+    if request.method == "POST":
+        student.department = request.form["department"]
+        student.cgpa = request.form["cgpa"]
+        student.resume = request.form["resume"]
+
+        db.session.commit()
+
+        return redirect(url_for("student_dashboard"))
+
+    return render_template(
+        "student/student_profile.html",
+        student=student
+    )
 
 
 
@@ -436,7 +544,15 @@ def create_job():
     return render_template("company/create_job.html")
 
 
+@app.route("/job/<int:job_id>")
+def job_detail(job_id):
 
+    job = Job.query.get_or_404(job_id)
+
+    return render_template(
+        "student/job_detail.html",
+        job=job
+    )
 
 
 
@@ -458,7 +574,23 @@ def close_job(job_id):
 
 
 
+@app.route("/view_applicants/<int:job_id>")
+def view_applicants(job_id):
 
+    if "role" not in session or session["role"] != "company":
+        return redirect(url_for("login"))
+
+    job = Job.query.get_or_404(job_id)
+
+    applications = Application.query.filter_by(
+        job_id=job.id
+    ).all()
+
+    return render_template(
+        "company/view_applicants.html",
+        job=job,
+        applications=applications
+    )
 
 
 

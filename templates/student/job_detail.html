@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Job Detail</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
+</head>
+
+<body>
+    
+
+    <div class="container">
+
+        <div class="top-bar">
+
+        <h1 class="title">{{ job.title }}</h1>
+
+        <a href="{{ url_for('student_dashboard') }}" class="btn back-btn">
+            ← Back
+        </a>
+
+    </div>
+
+        <h1 class="title">{{ job.title }}</h1>
+
+        <div class="section">
+
+            <p><b>Company:</b> {{ job.company.company_name }}</p>
+            <p><b>Skills:</b> {{ job.skills }}</p>
+            <p><b>Salary:</b> {{ job.salary }}</p>
+
+            <hr>
+
+            <h3>Description</h3>
+
+            <p>{{ job.description }}</p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

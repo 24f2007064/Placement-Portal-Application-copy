@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="top-bar">
+
+            <h1 class="title">Student Dashboard</h1>
+
+            <div class="top-actions">
+
+                <a href="/student_profile" class="btn profile-btn">
+                    Profile
+                </a>
+
+                <a href="/logout" class="btn logout-btn">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {% if not profile_complete %}
+        <div class="profile-alert">
+            Complete your profile (department, CGPA, resume) to apply for jobs.
+            <a href="/student_profile">Update profile</a>
+        </div>
+        {% endif %}
+
+
+
+        <!-- OPEN DRIVES -->
+        <div class="section">
+
+            <h2>Open Approved Drives</h2>
+
+            {% if jobs %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job</th>
+                        <th>Company</th>
+                        <th>Skills</th>
+                        <th>Salary</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for job in jobs %}
+                    <tr>
+
+                        <td>
+                            <a href="{{ url_for('job_detail', job_id=job.id) }}" class="job-link">
+                                {{ job.title }}
+                            </a>
+                        </td>
+
+                        <td>{{ job.company.company_name }}</td>
+
+                        <td>{{ job.skills }}</td>
+
+                        <td>{{ job.salary }}</td>
+
+                        <td>
+
+                            {% if profile_complete %}
+                            <a href="/apply_job/{{ job.id }}" class="btn approve">Apply</a>
+                            {% else %}
+                            <span style="opacity:0.6;">Complete Profile</span>
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+            {% else %}
+            <p>No open drives.</p>
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- MY APPLICATIONS -->
+        <div class="section">
+
+            <h2>My Applications</h2>
+
+            {% if applications %}
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Job</th>
+                        <th>Company</th>
+                        <th>Status</th>
+                        <th>Applied On</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for app in applications %}
+
+                    <tr>
+
+                        <td>
+                            <a href="{{ url_for('job_detail', job_id=app.job.id) }}" class="job-link">
+                                {{ app.job.title }}
+                            </a>
+                        </td>
+
+                        <td>{{ app.job.company.company_name }}</td>
+
+                        <td>
+
+                            <span class="badge
+                    {% if app.status == 'Applied' %}badge-applied
+                    {% elif app.status == 'Shortlisted' %}badge-shortlisted
+                    {% elif app.status == 'Rejected' %}badge-rejected
+                    {% elif app.status == 'Placed' %}badge-placed
+                    {% endif %}
+                    ">
+                                {{ app.status }}
+                            </span>
+
+                        </td>
+
+                        <td>{{ app.applied_at.strftime('%Y-%m-%d') }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+            <p>No applications yet.</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

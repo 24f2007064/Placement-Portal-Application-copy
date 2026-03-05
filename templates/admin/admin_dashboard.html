@@ -3,6 +3,7 @@
 
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
 
@@ -139,7 +140,11 @@
                     {% for app in recent_applications %}
                     <tr>
                         <td>{{ app.student.user.name }}</td>
-                        <td>{{ app.job.title }}</td>
+                        <td>
+                            <a href="/admin/job/{{ app.job.id }}" class="job-link">
+                                {{ app.job.title }}
+                            </a>
+                        </td>
                         <td>
                             <span class="badge
                             {% if app.status == 'Applied' %}badge-applied

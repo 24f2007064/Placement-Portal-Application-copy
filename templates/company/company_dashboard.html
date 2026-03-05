@@ -3,6 +3,7 @@
 
 <head>
     <title>Company Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
 
@@ -59,27 +60,33 @@
                     <!-- STATUS -->
                     <td>
                         {% if job.is_approved %}
-                            <span class="badge badge-approved">Approved</span>
+                        <span class="badge badge-approved">Approved</span>
                         {% else %}
-                            <span class="badge badge-pending">Pending</span>
+                        <span class="badge badge-pending">Pending</span>
                         {% endif %}
                     </td>
 
                     <!-- APPLICATION COUNT -->
                     <td>
                         {% if job.is_approved %}
-                            {{ job.applications|length }}
+                        {{ job.applications|length }}
                         {% else %}
-                            -
+                        -
                         {% endif %}
                     </td>
 
                     <!-- ACTION -->
                     <td>
                         {% if job.is_approved %}
-                            <a href="/close_job/{{ job.id }}" class="btn reject">Close</a>
+                        <a href="/view_applicants/{{ job.id }}" class="btn approve">
+                            View Applicants
+                        </a>
+
+                        <a href="/close_job/{{ job.id }}" class="btn reject">
+                            Close
+                        </a>
                         {% else %}
-                            <span style="opacity:0.6;">Awaiting Approval</span>
+                        <span style="opacity:0.6;">Awaiting Approval</span>
                         {% endif %}
                     </td>
                 </tr>
@@ -110,9 +117,9 @@
 
                     <td>
                         {% if job.is_approved %}
-                            <span class="badge badge-approved">Approved</span>
+                        <span class="badge badge-approved">Approved</span>
                         {% else %}
-                            <span class="badge badge-pending">Pending</span>
+                        <span class="badge badge-pending">Pending</span>
                         {% endif %}
                     </td>
 
@@ -128,4 +135,5 @@
     </div>
 
 </body>
+
 </html>

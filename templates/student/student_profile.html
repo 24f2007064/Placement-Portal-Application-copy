@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/job.css') }}">
+</head>
+
+<body>
+
+<div class="job-card">
+
+    <h2>Student Profile</h2>
+
+    <form method="POST">
+
+        <div class="input-group">
+            <label>Department</label>
+            <input type="text" name="department"
+                   value="{{ student.department or '' }}" required>
+        </div>
+
+        <div class="input-group">
+            <label>CGPA</label>
+            <input type="text" name="cgpa"
+                   value="{{ student.cgpa or '' }}" required>
+        </div>
+
+        <div class="input-group">
+            <label>Resume Link</label>
+            <input type="text" name="resume"
+                   value="{{ student.resume or '' }}" required>
+        </div>
+
+        <button type="submit" class="btn-create">
+            Save Profile
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
