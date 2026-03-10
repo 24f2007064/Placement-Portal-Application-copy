@@ -473,3 +473,49 @@ color:#ACFF11;
 width:100%;
 
 }
+
+
+
+
+
+
+/* make page fill the screen */
+html, body{
+    height:100%;
+}
+
+/* layout wrapper */
+body{
+    display:flex;
+    flex-direction:column;
+}
+
+/* push footer down */
+.container{
+    flex:1;
+}
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    width:100%;
+    text-align:center;
+
+    padding:22px 0;
+    margin-top:60px;
+
+    font-size:14px;
+    color:#8FA8FF;
+
+    background:linear-gradient(145deg,#0F1732,#0A1128);
+
+    border-top:1px solid rgba(255,255,255,0.05);
+
+    letter-spacing:0.5px;
+
+    opacity:0.9;
+}

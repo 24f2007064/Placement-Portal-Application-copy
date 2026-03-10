@@ -24,6 +24,7 @@ All Companies
                 <th>Email</th>
                 <th>Status</th>
                 <th>Created At</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -43,7 +44,13 @@ All Companies
 
                 <td>
 
-                    {% if company.is_approved %}
+                    {% if company.company_profile.is_blacklisted %}
+
+                    <span class="badge badge-rejected">
+                        Blacklisted
+                    </span>
+
+                    {% elif company.is_approved %}
 
                     <span class="badge badge-shortlisted">
                         Approved
@@ -60,6 +67,23 @@ All Companies
                 </td>
 
                 <td>{{ company.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+
+                    {% if company.company_profile.is_blacklisted %}
+
+                    <a href="/unblacklist_company/{{ company.company_profile.id }}" class="btn approve">
+                        Unblacklist
+                    </a>
+
+                    {% else %}
+
+                    <a href="/blacklist_company/{{ company.company_profile.id }}" class="btn reject">
+                        Blacklist
+                    </a>
+
+                    {% endif %}
+
+                </td>
 
             </tr>
 

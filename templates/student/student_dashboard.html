@@ -5,6 +5,7 @@
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
 </head>
 
 <body>
@@ -28,7 +29,21 @@
             </div>
 
         </div>
+        <div class="search-container">
 
+            <h2>Open Approved Drives</h2>
+
+            <form action="/search_jobs" class="search-bar">
+
+                <input type="text" name="q" placeholder="Search jobs by title or skills..." required>
+
+                <button class="search-btn">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
 
         {% if not profile_complete %}
         <div class="section profile-warning">
@@ -109,6 +124,8 @@
         <div class="section">
 
             <h2>My Applications</h2>
+
+            
 
             {% if applications %}
             <table>

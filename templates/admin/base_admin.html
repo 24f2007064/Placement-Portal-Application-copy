@@ -10,20 +10,25 @@
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <div class="top-bar">
-        <h1 class="title">{% block page_title %}Admin Panel{% endblock %}</h1>
+        <div class="top-bar">
+            <h1 class="title">{% block page_title %}Admin Panel{% endblock %}</h1>
 
-        <div>
-            {% block top_button %}{% endblock %}
+            <div>
+                {% block top_button %}{% endblock %}
+            </div>
         </div>
+
+        {% block content %}
+        {% endblock %}
+
     </div>
 
-    {% block content %}
-    {% endblock %}
-
-</div>
+    <footer class="footer">
+        © 2026 Placement Portal | All Rights Reserved
+    </footer>
 
 </body>
+
 </html>

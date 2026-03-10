@@ -288,3 +288,108 @@ color:#ffffff;
 
 
 
+
+
+
+/* =========================
+   THEMED SEARCH BAR
+========================= */
+
+.search-container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.search-bar{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+background:linear-gradient(145deg,#121A3A,#0F1735);
+
+padding:8px;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,0.06);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+
+transition:0.25s ease;
+}
+
+/* hover glow */
+
+.search-bar:hover{
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.5),
+0 0 12px rgba(143,168,255,0.25);
+
+}
+
+/* input */
+
+.search-bar input{
+
+border:none;
+outline:none;
+
+background:transparent;
+
+padding:10px 14px;
+
+color:#EAEAEA;
+
+font-size:14px;
+
+width:240px;
+}
+
+/* placeholder */
+
+.search-bar input::placeholder{
+
+color:#8FA8FF;
+opacity:0.8;
+
+}
+
+/* button */
+
+.search-btn{
+
+background:linear-gradient(135deg,#ACFF11,#00C9A7);
+
+border:none;
+
+color:#0A1128;
+
+padding:10px 16px;
+
+border-radius:10px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:all 0.25s ease;
+
+}
+
+/* hover animation */
+
+.search-btn:hover{
+
+transform:translateY(-2px) scale(1.05);
+
+box-shadow:
+0 10px 25px rgba(172,255,17,0.35),
+0 0 10px rgba(0,201,167,0.35);
+
+}
